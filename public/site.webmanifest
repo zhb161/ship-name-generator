@@ -1,0 +1,25 @@
+{
+  "name": "Ship Name Generator",
+  "short_name": "ShipNames",
+  "description": "Generate adorable ship names for couples and wedding hashtags",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color":="#FFF9F5",
+  "theme_color": "#FF6B6B",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
