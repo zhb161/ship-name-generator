@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Heart, Sparkles, Hash, Info, Award, Share2, ArrowRight } from 'lucide-react';
+import { Heart, Sparkles, Hash, Info, Award, Share2, ArrowRight, Github } from 'lucide-react';
 import NameInput from '@/components/NameInput';
 import ResultCard from '@/components/ResultCard';
 import LoveMeter from '@/components/LoveMeter';
@@ -66,6 +66,15 @@ export default function Home() {
                 <Hash className="w-4 h-4" />
                 <span className="hidden sm:inline">Wedding Hashtags</span>
                 <span className="sm:hidden">Hashtags</span>
+              </a>
+              <a
+                href="https://github.com/zhb161/ship-name-generator"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-coral-500 transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
               </a>
             </div>
           </div>

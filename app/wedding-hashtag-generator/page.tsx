@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Heart, Hash, Sparkles, ArrowLeft, Copy, Check, Calendar, Gem } from 'lucide-react';
+import { Heart, Hash, Sparkles, ArrowLeft, Copy, Check, Calendar, Gem, Github } from 'lucide-react';
 import { generateShipNames, calculateLoveScore, type ShipResult, type LoveScore } from '@/utils/ship-algorithm';
 
 export default function WeddingHashtagGenerator() {
@@ -89,13 +89,24 @@ export default function WeddingHashtagGenerator() {
                 Ship Name Generator
               </span>
             </a>
-            <a
-              href="/"
-              className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-coral-500 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Ship Names
-            </a>
+            <div className="flex items-center gap-4">
+              <a
+                href="/"
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-coral-500 transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span className="hidden sm:inline">Back to Ship Names</span>
+              </a>
+              <a
+                href="https://github.com/zhb161/ship-name-generator"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-coral-500 transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </nav>
