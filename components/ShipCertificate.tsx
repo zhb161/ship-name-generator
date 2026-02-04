@@ -29,18 +29,30 @@ export default function ShipCertificate({
     
     try {
       // Dynamically import html2canvas to avoid SSR issues
-      const html2canvas = (await import('html2canvas')).default;
+      const html2canvasModule = await import('html2canvas');
+      const html2canvas = html2canvasModule.default || html2canvasModule;
       
       const canvas = await html2canvas(certificateRef.current, {
         scale: 2,
-        backgroundColor: null,
+        backgroundColor: '#ffffff',
         logging: false,
+        useCORS: true,
+        allowTaint: true,
+        onclone: (clonedDoc) => {
+          // Ensure the cloned element has proper styles for rendering
+          const clonedElement = clonedDoc.body.querySelector('[data-certificate]');
+          if (clonedElement) {
+            (clonedElement as HTMLElement).style.transform = 'none';
+          }
+        },
       });
 
       const link = document.createElement('a');
       link.download = `${shipName}-ship-certificate.png`;
       link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     } catch (error) {
       console.error('Failed to generate certificate:', error);
       alert('Failed to generate certificate. Please try again.');
@@ -77,6 +89,7 @@ export default function ShipCertificate({
         <div className="p-6">
           <div
             ref={certificateRef}
+            data-certificate="true"
             className="relative bg-gradient-to-br from-rose-50 via-purple-50 to-pink-50 rounded-2xl p-8 text-center border-4 border-double border-coral-200"
           >
             {/* Decorative corners */}

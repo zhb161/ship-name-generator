@@ -364,11 +364,17 @@ export default function WeddingHashtagGenerator() {
 
       {/* Footer */}
       <footer className="py-8 px-4 sm:px-6 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Ship Name Generator. 
-            <a href="/" className="text-coral-400 hover:text-coral-300 ml-1">Back to Ship Names</a>
-          </p>
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-400">
+              © {new Date().getFullYear()} Ship Name Generator.
+              <a href="/" className="text-coral-400 hover:text-coral-300 ml-1">Back to Ship Names</a>
+            </p>
+            <div className="flex items-center gap-6 text-sm text-gray-400">
+              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </footer>
     </main>

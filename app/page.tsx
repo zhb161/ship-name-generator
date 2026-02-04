@@ -357,6 +357,8 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
                 <li><a href="/wedding-hashtag-generator" className="hover:text-white transition-colors">Wedding Hashtags</a></li>
+                <li><a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a></li>
               </ul>
             </div>
             <div>

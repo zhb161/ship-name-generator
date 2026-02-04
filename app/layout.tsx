@@ -75,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF6B6B'/><path d='M50 75 C50 75, 20 55, 20 35 C20 25, 28 17, 38 17 C44 17, 48 21, 50 25 C52 21, 56 17, 62 17 C72 17, 80 25, 80 35 C80 55, 50 75, 50 75Z' fill='white'/></svg>" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         
