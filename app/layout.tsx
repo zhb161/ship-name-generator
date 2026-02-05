@@ -2,18 +2,19 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ship-name-generator.com'),
   title: 'Ship Name Generator | Create Cute Couple Names & Wedding Hashtags',
   description: 'Generate adorable ship names for couples! Combine two names into one cute nickname like Brangelina. Perfect for couples, OTPs, and wedding hashtags. Try our free love calculator too!',
   keywords: [
     'ship name generator',
     'couple name generator',
-    'relationship names',
+    'relationship name generator',
+    'name combiner',
+    'celebrity couple names',
     'wedding hashtag generator',
     'OTP name maker',
-    'couple nickname',
-    'celebrity couple names',
     'love calculator',
-    'relationship compatibility',
+    'couple nickname generator',
   ],
   authors: [{ name: 'Ship Name Generator' }],
   creator: 'Ship Name Generator',
@@ -55,9 +56,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://ship-name-generator.com',
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  // verification: {
+  //   google: 'your-google-verification-code', // TODO: 添加真实的 Google Search Console 验证码
+  // },
 };
 
 export const viewport: Viewport = {

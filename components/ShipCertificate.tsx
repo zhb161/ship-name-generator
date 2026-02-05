@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Download, Heart, Sparkles, X } from 'lucide-react';
+import { Download, Sparkles, X } from 'lucide-react';
 import type { LoveScore } from '@/utils/ship-algorithm';
 
 interface ShipCertificateProps {
@@ -28,21 +28,34 @@ export default function ShipCertificate({
     setIsGenerating(true);
     
     try {
-      // Dynamically import html2canvas to avoid SSR issues
       const html2canvasModule = await import('html2canvas');
       const html2canvas = html2canvasModule.default || html2canvasModule;
       
+      // Wait a moment for any animations to settle
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const canvas = await html2canvas(certificateRef.current, {
         scale: 2,
-        backgroundColor: '#ffffff',
+        backgroundColor: null,
         logging: false,
         useCORS: true,
         allowTaint: true,
+        foreignObjectRendering: false,
         onclone: (clonedDoc) => {
-          // Ensure the cloned element has proper styles for rendering
-          const clonedElement = clonedDoc.body.querySelector('[data-certificate]');
+          const clonedElement = clonedDoc.body.querySelector('[data-certificate]') as HTMLElement;
           if (clonedElement) {
-            (clonedElement as HTMLElement).style.transform = 'none';
+            // Ensure proper background
+            clonedElement.style.background = 'linear-gradient(135deg, #FFF1F2 0%, #F3E8FF 50%, #FDF2F8 100%)';
+            
+            // Fix all text to ensure visibility
+            const allText = clonedElement.querySelectorAll('h2, span, p');
+            allText.forEach((el) => {
+              const element = el as HTMLElement;
+              const computedColor = window.getComputedStyle(element).color;
+              if (computedColor.includes('transparent') || computedColor === 'rgba(0, 0, 0, 0)') {
+                element.style.color = '#1F2937';
+              }
+            });
           }
         },
       });
@@ -90,17 +103,39 @@ export default function ShipCertificate({
           <div
             ref={certificateRef}
             data-certificate="true"
-            className="relative bg-gradient-to-br from-rose-50 via-purple-50 to-pink-50 rounded-2xl p-8 text-center border-4 border-double border-coral-200"
+            className="relative rounded-2xl p-8 text-center border-4 border-double border-coral-200 overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #FFF1F2 0%, #F3E8FF 50%, #FDF2F8 100%)',
+            }}
           >
-            {/* Decorative corners */}
-            <div className="absolute top-4 left-4 w-8 h-8 border-t-4 border-l-4 border-coral-300 rounded-tl-lg" />
-            <div className="absolute top-4 right-4 w-8 h-8 border-t-4 border-r-4 border-coral-300 rounded-tr-lg" />
-            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-4 border-l-4 border-coral-300 rounded-bl-lg" />
-            <div className="absolute bottom-4 right-4 w-8 h-8 border-b-4 border-r-4 border-coral-300 rounded-br-lg" />
+            {/* Decorative corners - using borders instead of pseudo elements */}
+            <div 
+              className="absolute top-4 left-4 w-8 h-8 rounded-tl-lg" 
+              style={{ borderTop: '4px solid #FCA5A5', borderLeft: '4px solid #FCA5A5' }} 
+            />
+            <div 
+              className="absolute top-4 right-4 w-8 h-8 rounded-tr-lg" 
+              style={{ borderTop: '4px solid #FCA5A5', borderRight: '4px solid #FCA5A5' }} 
+            />
+            <div 
+              className="absolute bottom-4 left-4 w-8 h-8 rounded-bl-lg" 
+              style={{ borderBottom: '4px solid #FCA5A5', borderLeft: '4px solid #FCA5A5' }} 
+            />
+            <div 
+              className="absolute bottom-4 right-4 w-8 h-8 rounded-br-lg" 
+              style={{ borderBottom: '4px solid #FCA5A5', borderRight: '4px solid #FCA5A5' }} 
+            />
 
-            {/* Header */}
+            {/* Header Heart Icon */}
             <div className="mb-6">
-              <Heart className="w-12 h-12 text-coral-500 mx-auto mb-2 animate-heart-beat" fill="currentColor" />
+              <div 
+                className="mx-auto mb-2 flex items-center justify-center"
+                style={{ width: '48px', height: '48px' }}
+              >
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF6B6B"/>
+                </svg>
+              </div>
               <p className="text-sm uppercase tracking-widest text-gray-500">Certificate of Shipping</p>
             </div>
 
@@ -109,32 +144,53 @@ export default function ShipCertificate({
               <p className="text-gray-600 mb-2">This certifies that</p>
               <div className="flex items-center justify-center gap-3 flex-wrap">
                 <span className="text-xl font-semibold text-gray-800">{name1}</span>
-                <Heart className="w-5 h-5 text-coral-400" fill="currentColor" />
+                <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF8787"/>
+                  </svg>
+                </div>
                 <span className="text-xl font-semibold text-gray-800">{name2}</span>
               </div>
             </div>
 
             {/* Ship Name */}
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 mb-6 shadow-sm">
+            <div 
+              className="rounded-xl p-4 mb-6"
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
+            >
               <p className="text-sm text-gray-500 mb-1">Officially Known As</p>
-              <h2 className="text-3xl font-bold text-gradient font-display">
-                {shipName}
-              </h2>
+              <div className="flex justify-center">
+                <div 
+                  className="inline-block px-6 py-2 rounded-lg"
+                  style={{ background: 'linear-gradient(135deg, #FF6B6B 0%, #6C5CE7 100%)' }}
+                >
+                  <h2 
+                    className="text-3xl font-bold"
+                    style={{ 
+                      color: '#FFFFFF',
+                      fontFamily: 'Poppins, sans-serif',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                    }}
+                  >
+                    {shipName}
+                  </h2>
+                </div>
+              </div>
             </div>
 
             {/* Love Score */}
             <div className="mb-6">
               <p className="text-sm text-gray-500 mb-2">Compatibility Score</p>
               <div className="flex items-center justify-center gap-2">
-                <span className="text-4xl font-bold text-coral-500">{scoreData.score}%</span>
+                <span className="text-4xl font-bold" style={{ color: '#FF6B6B' }}>{scoreData.score}%</span>
                 <span className="text-2xl">{scoreData.emoji}</span>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="text-xs text-gray-400">
+            <div className="text-xs" style={{ color: '#9CA3AF' }}>
               <p>Issued on {formattedDate}</p>
-              <p className="font-medium text-coral-400 mt-1">ship-name-generator.com</p>
+              <p className="font-medium mt-1" style={{ color: '#FCA5A5' }}>ship-name-generator.com</p>
             </div>
           </div>
         </div>

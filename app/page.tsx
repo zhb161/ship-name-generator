@@ -224,10 +224,10 @@ export default function Home() {
               How to Use the Ship Name Generator
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Creating the perfect couple name is easy! Simply enter two names in the input fields 
-              above and click &quot;Generate Ship Names.&quot; Our algorithm uses advanced linguistic 
-              techniques including vowel pivoting and portmanteau creation to blend names naturally 
-              and create adorable combinations.
+              Creating the perfect couple name is easy! Simply enter two names in the input fields
+              above and click &quot;Generate Ship Names.&quot; Our algorithm uses advanced linguistic
+              techniques including phonetic syllable analysis, vowel pivoting, and portmanteau creation.
+              Each name is scored for pronunciation fluency to ensure natural, easy-to-say combinations.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-800 mt-8 mb-4 font-display">
@@ -304,7 +304,7 @@ export default function Home() {
               {
                 icon: Sparkles,
                 title: 'Smart Algorithm',
-                description: 'Uses vowel pivoting and portmanteau techniques for natural-sounding names.',
+                description: 'Phonetic syllable analysis with fluency scoring for naturally pronounceable names.',
                 color: 'text-coral-500',
                 bgColor: 'bg-coral-50',
               },
