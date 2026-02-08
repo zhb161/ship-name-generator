@@ -2,6 +2,8 @@
 
 # 💕 Ship Name Generator
 
+**Website:** https://ship-name-generator.com
+
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
@@ -295,13 +297,7 @@ This project is licensed under the MIT License - see the [LICENSE](../../blob/ma
 - 🎨 Color palette inspired by romantic themes and modern glassmorphism
 - 🚀 Built with the amazing Next.js team and community
 
----
 
-## 📞 Contact
-
-- 📧 **Email**: [your-email@example.com](mailto:your-email@example.com)
-- 🐦 **Twitter**: [@shipnamegen](https://twitter.com/shipnamegen)
-- 💻 **GitHub**: [zhb161](https://github.com/zhb161)
 
 ---
 
