@@ -4,8 +4,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ship-name-generator.com'),
-  title: 'Ship Name Generator | Create Cute Couple Names & Wedding Hashtags',
-  description: 'Generate adorable ship names for couples! Combine two names into one cute nickname like Brangelina. Perfect for couples, OTPs, and wedding hashtags. Try our free love calculator too!',
+  title: 'Ship Name Generator — Cute Couple Names & Hashtags',
+  description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags. Try it instantly!',
   keywords: [
     'ship name generator',
     'couple name generator',
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ship-name-generator.com',
     siteName: 'Ship Name Generator',
-    title: 'Ship Name Generator | Create Cute Couple Names',
-    description: 'Generate adorable ship names for couples! Combine two names into cute nicknames like Brangelina.',
+    title: 'Ship Name Generator — Cute Couple Names & Hashtags',
+    description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags.',
     images: [
       {
         url: '/og-image.jpg',
@@ -49,10 +49,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ship Name Generator | Create Cute Couple Names',
-    description: 'Generate adorable ship names for couples! Combine two names into cute nicknames.',
+    title: 'Ship Name Generator — Cute Couple Names & Hashtags',
+    description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags.',
     images: ['/og-image.jpg'],
     creator: '@shipnamegen',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   alternates: {
     canonical: 'https://ship-name-generator.com',
@@ -77,11 +84,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        
+
         {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

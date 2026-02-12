@@ -9,7 +9,12 @@
       "Bash(DEBUG=vitest:*)",
       "Bash(npm test:*)",
       "Bash(taskkill:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(where:*)",
+      "Bash(node scripts/generate-favicons.mjs:*)",
+      "Bash(node -e:*)",
+      "Bash(del \"C:\\\\self-project\\\\ship-name-generator\\\\scripts\\\\generate-favicons.mjs\")"
     ]
   }
 }
