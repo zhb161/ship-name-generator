@@ -1,29 +1,40 @@
 import { MetadataRoute } from 'next'
+import { pageUrl } from '@/utils/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://ship-name-generator.com'
-
   return [
     {
-      url: baseUrl,
+      url: pageUrl('/'),
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/wedding-hashtag-generator`,
+      url: pageUrl('/couple-ship-name-generator'),
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/privacy-policy`,
+      url: pageUrl('/random-ship-name-generator'),
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: pageUrl('/wedding-hashtag-generator'),
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: pageUrl('/privacy-policy'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/terms-of-service`,
+      url: pageUrl('/terms-of-service'),
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.3,

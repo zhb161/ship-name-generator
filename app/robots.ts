@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { pageUrl } from '@/utils/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://ship-name-generator.com/sitemap.xml',
+    sitemap: pageUrl('/sitemap.xml'),
   }
 }

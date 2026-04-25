@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
+import { pageUrl } from '@/utils/seo'
 
 export const metadata: Metadata = {
-  title: 'Wedding Hashtag Generator | Create Unique Wedding Hashtags',
-  description: 'Generate creative wedding hashtags for your special day! Combine names into memorable hashtags for Instagram, TikTok and social media. Free and easy to use.',
+  title: 'Wedding Hashtag Generator - Create Custom Wedding Hashtags',
+  description: 'Generate custom wedding hashtags from names, wedding year, and last name. Create memorable hashtags for Instagram, TikTok, invitations, and guest photos.',
   keywords: [
     'wedding hashtag generator',
     'wedding hashtag ideas',
@@ -11,12 +12,12 @@ export const metadata: Metadata = {
     'couple hashtag maker',
   ],
   openGraph: {
-    title: 'Wedding Hashtag Generator | Create Unique Wedding Hashtags',
-    description: 'Generate creative wedding hashtags for your special day!',
-    url: 'https://ship-name-generator.com/wedding-hashtag-generator',
+    title: 'Wedding Hashtag Generator - Create Custom Wedding Hashtags',
+    description: 'Generate custom wedding hashtags from names, wedding year, and last name.',
+    url: pageUrl('/wedding-hashtag-generator'),
   },
   alternates: {
-    canonical: 'https://ship-name-generator.com/wedding-hashtag-generator',
+    canonical: pageUrl('/wedding-hashtag-generator'),
   },
 }
 

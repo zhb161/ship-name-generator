@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
+import { pageUrl, siteUrl } from '@/utils/seo';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.ship-name-generator.com'),
+  metadataBase: new URL(siteUrl),
   title: 'Ship Name Generator — Cute Couple Names & Hashtags',
   description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags. Try it instantly!',
   keywords: [
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.ship-name-generator.com',
+    url: siteUrl,
     siteName: 'Ship Name Generator',
     title: 'Ship Name Generator — Cute Couple Names & Hashtags',
     description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags.',
@@ -62,7 +63,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   alternates: {
-    canonical: 'https://www.ship-name-generator.com',
+    canonical: pageUrl('/'),
   },
   // verification: {
   //   google: 'your-google-verification-code', // TODO: 添加真实的 Google Search Console 验证码
@@ -104,30 +105,6 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebApplication',
-              name: 'Ship Name Generator',
-              description: 'Generate adorable ship names for couples and wedding hashtags',
-              url: 'https://www.ship-name-generator.com',
-              applicationCategory: 'EntertainmentApplication',
-              operatingSystem: 'Any',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
-              author: {
-                '@type': 'Organization',
-                name: 'Ship Name Generator',
-              },
-            }),
-          }}
-        />
       </head>
       <body className="antialiased">
         {children}
