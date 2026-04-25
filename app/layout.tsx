@@ -3,7 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ship-name-generator.com'),
+  metadataBase: new URL('https://www.ship-name-generator.com'),
   title: 'Ship Name Generator — Cute Couple Names & Hashtags',
   description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags. Try it instantly!',
   keywords: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ship-name-generator.com',
+    url: 'https://www.ship-name-generator.com',
     siteName: 'Ship Name Generator',
     title: 'Ship Name Generator — Cute Couple Names & Hashtags',
     description: 'Combine two names into one adorable couple nickname like Brangelina! Free ship name generator with love calculator and wedding hashtags.',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   alternates: {
-    canonical: 'https://ship-name-generator.com',
+    canonical: 'https://www.ship-name-generator.com',
   },
   // verification: {
   //   google: 'your-google-verification-code', // TODO: 添加真实的 Google Search Console 验证码
@@ -113,7 +113,7 @@ export default function RootLayout({
               '@type': 'WebApplication',
               name: 'Ship Name Generator',
               description: 'Generate adorable ship names for couples and wedding hashtags',
-              url: 'https://ship-name-generator.com',
+              url: 'https://www.ship-name-generator.com',
               applicationCategory: 'EntertainmentApplication',
               operatingSystem: 'Any',
               offers: {
