@@ -3,6 +3,8 @@ import Script from 'next/script';
 import './globals.css';
 import { pageUrl, siteUrl } from '@/utils/seo';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Ship Name Generator — Cute Couple Names & Hashtags',
@@ -91,19 +93,23 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-KZGTR5L5NK"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-KZGTR5L5NK');
-          `}
-        </Script>
+        {isProduction && (
+          <>
+            {/* Google Analytics */}
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-KZGTR5L5NK"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-KZGTR5L5NK');
+              `}
+            </Script>
+          </>
+        )}
 
       </head>
       <body className="antialiased">
