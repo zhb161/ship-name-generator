@@ -84,7 +84,7 @@ export default function ShipNameGeneratorTool({
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 font-display">
               {resultsIntro}
             </h2>
-            <p className="text-gray-600">Copy your favorite result or download a ship certificate.</p>
+            <p className="text-gray-600">Copy your favorite result or share a ship certificate.</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">

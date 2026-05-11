@@ -1,8 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { Download, Sparkles, X } from 'lucide-react';
+import { useState } from 'react';
+import { Download, Share2, Sparkles, X } from 'lucide-react';
+import ShipCertificateCard from '@/components/ShipCertificateCard';
 import type { LoveScore } from '@/utils/ship-algorithm';
+import { buildXIntentUrl } from '@/utils/share';
 
 interface ShipCertificateProps {
   name1: string;
@@ -19,7 +21,6 @@ export default function ShipCertificate({
   scoreData,
   onClose,
 }: ShipCertificateProps) {
-  const certificateRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
 
   const formattedDate = new Date().toLocaleDateString('en-US', {
@@ -198,8 +199,6 @@ export default function ShipCertificate({
   };
 
   const handleDownload = async () => {
-    if (!certificateRef.current) return;
-    
     setIsGenerating(true);
     
     try {
@@ -218,6 +217,23 @@ export default function ShipCertificate({
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  const handleShareOnX = () => {
+    const shareUrl = buildXIntentUrl({
+      name1,
+      name2,
+      shipName,
+      score: scoreData.score,
+    });
+    const shareWindow = window.open(shareUrl, '_blank');
+
+    if (shareWindow) {
+      shareWindow.opener = null;
+      return;
+    }
+
+    window.location.href = shareUrl;
   };
 
   return (
@@ -240,117 +256,39 @@ export default function ShipCertificate({
 
         {/* Certificate Preview */}
         <div className="p-6">
-          <div
-            ref={certificateRef}
-            data-certificate="true"
-            className="relative rounded-2xl p-8 text-center border-4 border-double border-coral-200 overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, #FFF1F2 0%, #F3E8FF 50%, #FDF2F8 100%)',
-            }}
-          >
-            {/* Decorative corners - using borders instead of pseudo elements */}
-            <div 
-              className="absolute top-4 left-4 w-8 h-8 rounded-tl-lg" 
-              style={{ borderTop: '4px solid #FCA5A5', borderLeft: '4px solid #FCA5A5' }} 
-            />
-            <div 
-              className="absolute top-4 right-4 w-8 h-8 rounded-tr-lg" 
-              style={{ borderTop: '4px solid #FCA5A5', borderRight: '4px solid #FCA5A5' }} 
-            />
-            <div 
-              className="absolute bottom-4 left-4 w-8 h-8 rounded-bl-lg" 
-              style={{ borderBottom: '4px solid #FCA5A5', borderLeft: '4px solid #FCA5A5' }} 
-            />
-            <div 
-              className="absolute bottom-4 right-4 w-8 h-8 rounded-br-lg" 
-              style={{ borderBottom: '4px solid #FCA5A5', borderRight: '4px solid #FCA5A5' }} 
-            />
-
-            {/* Header Heart Icon */}
-            <div className="mb-6">
-              <div 
-                className="mx-auto mb-2 flex items-center justify-center"
-                style={{ width: '48px', height: '48px' }}
-              >
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF6B6B"/>
-                </svg>
-              </div>
-              <p className="text-sm uppercase tracking-widest text-gray-500">Certificate of Shipping</p>
-            </div>
-
-            {/* Names */}
-            <div className="mb-6">
-              <p className="text-gray-600 mb-2">This certifies that</p>
-              <div className="flex items-center justify-center gap-3 flex-wrap">
-                <span className="text-xl font-semibold text-gray-800">{name1}</span>
-                <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF8787"/>
-                  </svg>
-                </div>
-                <span className="text-xl font-semibold text-gray-800">{name2}</span>
-              </div>
-            </div>
-
-            {/* Ship Name */}
-            <div 
-              className="rounded-xl p-4 mb-6"
-              style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
-            >
-              <p className="text-sm text-gray-500 mb-1">Officially Known As</p>
-              <div className="flex justify-center">
-                <div 
-                  className="inline-block px-6 py-2 rounded-lg"
-                  style={{ background: 'linear-gradient(135deg, #FF6B6B 0%, #6C5CE7 100%)' }}
-                >
-                  <h2 
-                    className="text-3xl font-bold"
-                    style={{ 
-                      color: '#FFFFFF',
-                      fontFamily: 'Poppins, sans-serif',
-                      textShadow: '0 1px 2px rgba(0,0,0,0.1)'
-                    }}
-                  >
-                    {shipName}
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            {/* Love Score */}
-            <div className="mb-6">
-              <p className="text-sm text-gray-500 mb-2">Compatibility Score</p>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-4xl font-bold" style={{ color: '#FF6B6B' }}>{scoreData.score}%</span>
-                <span className="text-2xl">{scoreData.emoji}</span>
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="text-xs" style={{ color: '#9CA3AF' }}>
-              <p>Issued on {formattedDate}</p>
-              <p className="font-medium mt-1" style={{ color: '#FCA5A5' }}>ship-name-generator.com</p>
-            </div>
-          </div>
+          <ShipCertificateCard
+            name1={name1}
+            name2={name2}
+            shipName={shipName}
+            scoreData={scoreData}
+            issuedDate={formattedDate}
+          />
         </div>
 
         {/* Actions */}
-        <div className="p-6 pt-0">
+        <div className="p-6 pt-0 space-y-3">
+          <button
+            onClick={handleShareOnX}
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-coral-500 to-purple-soft text-white font-semibold shadow-lg shadow-coral-200 hover:shadow-xl hover:shadow-coral-300 transition-all duration-300 btn-romantic disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            <Share2 className="w-5 h-5" />
+            <span>Share on X</span>
+          </button>
+
           <button
             onClick={handleDownload}
             disabled={isGenerating}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-coral-500 to-purple-soft text-white font-semibold shadow-lg shadow-coral-200 hover:shadow-xl hover:shadow-coral-300 transition-all duration-300 btn-romantic disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border-2 border-coral-100 text-coral-600 font-semibold hover:bg-coral-50 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isGenerating ? (
               <>
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-coral-200 border-t-coral-500 rounded-full animate-spin" />
                 <span>Generating...</span>
               </>
             ) : (
               <>
                 <Download className="w-5 h-5" />
-                <span>Download Certificate</span>
+                <span>Download Image</span>
               </>
             )}
           </button>
